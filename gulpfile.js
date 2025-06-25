@@ -17,10 +17,17 @@ export function css ( done ) {
     done()
 }
 
+export function html(done) {
+    src('index.html')
+        .pipe(dest('build'))
+    done()
+}
+
 export function dev(){
     watch('src/scss/**/*.scss', css)
     watch('src/js/**/*.js', js)
+    watch('index.html', html)
 }
 
-export const build = series(js, css)
+export const build = series(js, css, html)
 export default dev
