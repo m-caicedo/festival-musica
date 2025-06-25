@@ -23,11 +23,25 @@ export function html(done) {
     done()
 }
 
+export function img(done) {
+    src('src/img/**/*')
+        .pipe(dest('build/img'))
+    done()
+}
+
+export function video(done) {
+    src('video/**/*')
+        .pipe(dest('build/video'))
+    done()
+}
+
 export function dev(){
     watch('src/scss/**/*.scss', css)
     watch('src/js/**/*.js', js)
     watch('index.html', html)
+    watch('src/img/**/*', img)
+    watch('video/**/*', video)
 }
 
-export const build = series(js, css, html)
+export const build = series(js, css, html, img, video)
 export default dev
